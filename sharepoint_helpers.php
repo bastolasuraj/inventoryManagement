@@ -154,3 +154,54 @@ function createListItem(
     $responseObj = json_decode($responseJson, true);
     return $responseObj['d'];
 }
+
+/**
+ * Updates an existing item in a SharePoint list via REST.
+ */
+function updateListItem(
+    string $siteUrl,
+    string $listTitle,
+    string $entityTypeFullName,
+    int    $itemId,
+    array  $itemData,
+    string $accessToken,
+    string $formDigest
+): array {
+    $endpoint = rtrim($siteUrl, '/') .
+                "/_api/web/lists/getbytitle('" . rawurlencode($listTitle) . "')/items({$itemId})";
+
+    // Build JSON payload
+    $payload = ['__metadata' => ['type' => $entityTypeFullName]];
+    foreach ($itemData as $col => $val) {
+        $payload[$col] = $val;
+    }
+    $jsonBody = json_encode($payload);
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $endpoint);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonBody);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        'Accept: application/json;odata=verbose',
+        'Content-Type: application/json;odata=verbose',
+        'Authorization: Bearer ' . $accessToken,
+        'X-RequestDigest: ' . $formDigest,
+        'IF-MATCH: *',
+        'X-HTTP-Method: MERGE'
+    ]);
+
+    $responseJson = curl_exec($ch);
+    if ($responseJson === false) {
+        throw new Exception('Curl error (updateListItem): ' . curl_error($ch));
+    }
+    $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+
+    if ($status < 200 || $status >= 300) {
+        throw new Exception("HTTP $status when updating item {$itemId} in '{$listTitle}': {$responseJson}");
+    }
+
+    $responseObj = json_decode($responseJson, true);
+    return $responseObj['d'] ?? [];
+}
