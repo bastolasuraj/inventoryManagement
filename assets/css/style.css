@@ -1,0 +1,117 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+.vertical-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 90vh;
+}
+.top-section {
+    display: flex;
+    gap: 20px;
+    flex: 1 1 50%;
+}
+.half {
+    flex: 1;
+    border: 1px solid #ccc;
+    padding: 15px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    background-color: #fafafa;
+    overflow-y: auto;
+}
+#inventorySection .scroll-container {
+  max-height: 400px;      /* adjust to whatever fixed height you prefer */
+  overflow-y: auto;       /* vertical scrollbar only when needed */
+  border: 1px solid #ddd; /* optional: add a faint border so it’s clear where it scrolls */
+}
+.bottom-section {
+    border: 1px solid #ccc;
+    padding: 15px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    background-color: #fafafa;
+    height: 40%;
+    overflow-y: auto;
+}
+h2, h3 {
+    margin-top: 0;
+    color: #333;
+    text-align: center;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+input[type=text], input[type=number], textarea {
+    padding: 8px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+textarea {
+    min-height: 60px;
+}
+button {
+    padding: 10px;
+    font-size: 1rem;
+    border: none;
+    background-color: #4caf50;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 48%;
+}
+button:hover {
+    background-color: #45a049;
+}
+.button-row {
+    display: flex;
+    justify-content: space-between;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+th, td {
+    border: 1px solid #999;
+    padding: 8px;
+    text-align: left;
+    vertical-align: middle;
+}
+th {
+    background-color: #e2e2e2;
+}
+.delete-btn {
+    background-color: #f44336;
+    width: 70px;
+    font-size: 0.9rem;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 3px;
+}
+.delete-btn:hover {
+    background-color: #d32f2f;
+}
+/* Pagination controls */
+.pagination {
+    text-align: center;
+    margin-top: 10px;
+}
+.pagination button {
+    width: auto;
+    min-width: 70px;
+    margin: 0 5px;
+}
+.pagination button:disabled {
+    background-color: #ccc !important;
+    cursor: not-allowed;
+}

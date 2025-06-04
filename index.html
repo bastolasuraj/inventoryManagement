@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Inventory Management</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="vertical-container">
+    <div class="top-section">
+        <div class="half" id="formSection">
+            <h3>Inventory Adjustment</h3>
+            <form id="commandForm">
+                <!-- New required fields -->
+                <input type="text" id="cmdYard" placeholder="Yard" required />
+                <input type="text" id="cmdUser" placeholder="User" required />
+                <!-- Existing fields -->
+                <input type="text" id="cmdPartNumber" placeholder="Part Number" required />
+                <input type="text" id="cmdPartName" placeholder="Part Name" />
+                <input type="number" id="cmdQuantityChange" placeholder="Quantity Change" required />
+                <textarea id="cmdRemarks" placeholder="Remarks (optional)"></textarea>
+                <div class="button-row">
+                    <button type="button" id="btnAdd">Add to Inventory</button>
+                    <button type="button" id="btnRemove">Remove from Inventory</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="half" id="inventorySection">
+            <h2>Current Inventory</h2>
+            <table id="inventoryTable">
+                <thead>
+                <tr>
+                    <th>Part Number</th>
+                    <th>Part Name</th>
+                    <th>Quantity On Hand</th>
+                    <!-- <th>Action</th> -->
+                </tr>
+                </thead>
+                <tbody>
+                <!-- Filled dynamically -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="bottom-section" id="commandsSection">
+        <h2>Audit Log</h2>
+        <table id="commandsTable">
+            <thead>
+            <tr>
+                <th>Part Number</th>
+                <th>Part Name</th>
+                <th>Quantity Change</th>
+                <th>Remarks</th>
+                <th>Yard</th>
+                <th>User</th>
+		<th>Timestamp</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Filled dynamically -->
+            </tbody>
+        </table>
+        <div class="pagination">
+            <button id="prevPage">Previous</button>
+            <span id="pageInfo">Page 1</span>
+            <button id="nextPage">Next</button>
+        </div>
+    </div>
+</div>
+
+<script src="assets/js/script.js"></script>
+</body>
+</html>
