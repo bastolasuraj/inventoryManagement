@@ -1,0 +1,27 @@
+# Sensitive or local configuration files
+env.php
+inventory.json
+commands.json
+
+# PHP dependencies and vendor libraries
+vendor/
+
+# Logs
+*.log
+
+# Environment files
+.env
+.env.*
+
+# IDE specific files
+.idea/
+.vscode/
+
+# Editor swap files
+*~
+*.swp
+*.swo
+
+# Operating system files
+.DS_Store
+Thumbs.db
